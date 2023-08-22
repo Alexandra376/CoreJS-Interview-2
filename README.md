@@ -436,10 +436,10 @@ closure(); // Вывод: I am from outer
 
 Пример: 
 ```
-const globalVariable = "I am global"; // Глобальный объем
+const globalVariable = "I am global"; // Глобальный область
 
 function myFunction() {
-  const localVariable = "I am local"; // Локальный объем
+  const localVariable = "I am local"; // Локальная область 
 }
 ```
 Переменные, объявленные в глобальной области, видны везде, а переменные внутри локальной области видимости доступны только внутри соответствующих функций или блоков.
