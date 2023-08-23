@@ -11,7 +11,7 @@ class MathUtils {
   static subtract(a, b) {
     return a - b;
   }
-}
+} 
 
 // Вызов статических методов
 console.log(MathUtils.add(5, 3));       // Вывод: 8
