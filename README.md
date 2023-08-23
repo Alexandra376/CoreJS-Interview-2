@@ -3805,7 +3805,8 @@ OWASP Top 10 предоставляет ценный инструментари�
 ## 1) Function.prototype.bind реализовать полифилл
 Вот пример полифилла для метода `Function.prototype.bind`, который добавляет поддержку `bind` для старых браузеров, не имеющих этот метод:
 
-```Function.prototype.myBind = function (context, ...rest){ 
+```
+Function.prototype.myBind = function (context, ...rest){ 
     return (...arg)=>{
         return this.apply(context, rest.concat(arg))
     }
