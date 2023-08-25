@@ -3982,22 +3982,20 @@ console.log(result); // Выведет: 9
 ## 8) add(5)(9)(-4)(1) -> 11. Как реализовать ?
 ```
 function add(x) {
-  var sum = x;
-
-  function innerAdd(y) {
-    sum += y;
-    return innerAdd;
+  function inner(y) {
+    if (y !== undefined) {
+      x += y;
+      return inner;
+    } else {
+      return x;
+    }
   }
-
-  innerAdd.valueOf = function () {
-    return sum;
-  };
-
-  return innerAdd;
+  
+  return inner;
 }
 
-var result = add(5)(9)(-4)(1);
-console.log(result); // Выведет: 11
+var result = add(5)(9)(-4)(1)();
+console.log(result);
 ```
 ## 9) periodOutput(period) метод должен выводить в консоль один раз за каждый период, сколько времени прошло с момента первого вызова функции. Пример: periodOutput(100) -> 100(after 100 ms), 200(after 100 ms), 300(after 100 ms), ...
 ```
@@ -4017,13 +4015,14 @@ periodOutput(100);
 ## 10) extendedPeriodOutput(period) метод должен выводить в консоль один раз за период, сколько времени прошло с момента первого вызова функции, а затем увеличивать период. Пример: // extendedPeriodOutput(100) -> 100(after 100 ms), 200(after 200 ms), 300(after 300 ms)
 ```
 function extendedPeriodOutput(period) {
-  function printTime() {
-    console.log(period + '(after ' + period + ' ms)');
-    period += period;
-    setTimeout(printTime, period);
+  function outputAndSetTimeout(currentPeriod) {
+    console.log(currentPeriod + '(after ' + currentPeriod + ' ms)');
+    setTimeout(function() {
+      outputAndSetTimeout(currentPeriod + period);
+    }, currentPeriod);
   }
-
-  setTimeout(printTime, period);
+  outputAndSetTimeout(period);
 }
-```
+
 extendedPeriodOutput(100);
+```
